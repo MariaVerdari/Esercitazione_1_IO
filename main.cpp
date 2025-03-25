@@ -6,13 +6,12 @@
 
 
 
+ double map( double x) {
+	double a = 3;
+    double b = 4;
+	double c = 7;
 
-
-
-double map(double x) {
-	
-
-	double y =  x*(double(3)/double(4)) - double(7)/double(4);
+	double y =  x*(a/b) - c/b;
 	
 	return y; 
 }
@@ -20,32 +19,35 @@ double map(double x) {
 int main()
 {
 	std::ifstream data("./data.txt");
-	std::ofstream ofs("./result.txt");
-	ofs<< std::setprecision(16) <<std::scientific;	
-
 	
-
-	ofs << "# N Mean"<< "\n";
-
-
 	if(data.fail())
 	{
 		std::cerr << "Non è stato possibile aprire file" << std::endl;
 		return 1;
 	}
 	
+	std::ofstream ofs("./result.txt");
+	ofs << std::setprecision(16) <<std::scientific;	
+
+
+	ofs << "# N Mean"<< std::endl;
+
+	
 	double mean = 0;
 	int i = 0;
+	double somma = 0;
 	double val;
 
 	while(data >> val) {
+		
 
 		val = map(val);
-
-		mean = (mean*i + val)/(i+1);
+		somma = somma + val; 
+		mean = somma/(i+1);
 		
 		i++;
-		ofs << mean<< "\n";
+
+		ofs << i << " " << mean<< std::endl;
 	}
 	
 	data.close();
