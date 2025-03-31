@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip> 
-#include <numbers>
-#include <cmath>
+
 
 
 
